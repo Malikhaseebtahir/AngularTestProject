@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +12,11 @@ export class SignupComponent {
 
   signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(
+    private fb: FormBuilder, 
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.signupForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -24,12 +28,11 @@ export class SignupComponent {
     const password = this.signupForm.value.password;
     this.auth.signUp(email, password)
       .then(() => {
-        console.log('User signed up successfully!');
-        // Redirect or show success message
+        this.router.navigateByUrl('/')
       })
       .catch(error => {
-        console.error('Error signing up:', error);
-        // Handle error
+        console.log(error);
+        alert(error);
       });
   }
 

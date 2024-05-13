@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   isLoggedIn$ = new BehaviorSubject<boolean>(false); // Observable for login status
 
-  constructor(private auth: AngularFireAuth, private router: Router) {
+  constructor(private auth: AngularFireAuth) {
     // Initialize login status from local storage
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     this.isLoggedIn$.next(isLoggedIn);
@@ -21,7 +21,6 @@ export class AuthService {
     return this.auth.signInWithEmailAndPassword(email, password)
       .then(() => {
         this.updateLoginStatus(true);
-        this.router.navigateByUrl('/'); // Navigate to protected route after successful login
       });
   }
 
@@ -38,7 +37,6 @@ export class AuthService {
     return this.auth.createUserWithEmailAndPassword(email, password)
       .then(() => {
         this.updateLoginStatus(true);
-        this.router.navigateByUrl('/'); // Navigate to protected route after successful sign-up
       });
   }
 

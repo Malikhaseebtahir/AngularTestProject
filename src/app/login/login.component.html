@@ -1,9 +1,14 @@
 <!-- login.component.html -->
 <form [formGroup]="loginForm" (ngSubmit)="signIn()" class="login-form">
-    <label>Email:</label>
-    <input type="email" formControlName="email" required>
-    <label>Password:</label>
-    <input type="password" formControlName="password" required>
-    <button type="submit">Sign In</button>
-  </form>
-  
+  <label>Email:</label>
+  <input type="email" formControlName="email" required>
+  <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+    <span class="error-message">Email is required.</span>
+  </div>
+  <label>Password:</label>
+  <input type="password" formControlName="password" required>
+  <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+    <span class="error-message">Password is required.</span>
+  </div>
+  <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+</form>

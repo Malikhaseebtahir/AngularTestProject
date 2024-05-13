@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,10 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(
+    private fb: FormBuilder, 
+    private auth: AuthService,
+    private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -24,12 +28,10 @@ export class LoginComponent {
     const password = this.loginForm.value.password;
     this.auth.signIn(email, password)
       .then(() => {
-        console.log('User signed in successfully!');
-        // Redirect or show success message
+        this.router.navigateByUrl('/');
       })
       .catch(error => {
-        console.error('Error signing in:', error);
-        // Handle error
+        alert('Invalid username/password');
       });
   }
 

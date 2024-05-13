@@ -1,45 +1,53 @@
-/* login.component.css and signup.component.css */
-
-/* Center the form vertically and horizontally */
+/* Center the form vertically and horizontally on big screens */
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  height: 50vh; /* Set height to full viewport height */
+  width: 50%; /* Set initial width to 50% of viewport width */
+  margin: 0 auto; /* Center horizontally */
+}
+
+/* Style input fields */
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+/* Style labels */
+label {
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Style the submit button */
+button {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Add media query for responsiveness */
+@media (max-width: 768px) {
+  /* Adjust width of form on smaller screens */
+  form {
+      width: 100%; /* Occupy full width on mobile and tablet screens */
   }
-  
-  /* Style input fields */
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  /* Style the submit button */
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Add media query for responsiveness */
-  @media (max-width: 768px) {
-    /* Adjust width of form on smaller screens */
-    form {
-      width: 80%;
-    }
-  }
-  
+}
